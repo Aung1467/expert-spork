@@ -1,0 +1,59 @@
+body {
+  background: linear-gradient(135deg, #2b2b2b, #1c1c1c);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+h1, h2 {
+  color: #ff7fbf;
+}
+
+select, textarea, input[type="file"], input[type="text"] {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+button {
+  background: #ff5ea0;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #ff7fbf;
+}
+
+.memory-photo {
+  width: 100%;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.typeLabel {
+  font-weight: bold;
+  color: #ff97c2;
+  font-size: 18px;
+}

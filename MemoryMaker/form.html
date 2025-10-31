@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Your Memory 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container fade-in">
+    <h1>Add Your Personal Touch 💕</h1>
+
+    <!-- ဒီနေရာက user မှာ input တွေလုပ်မယ့်နေရာ -->
+    <form id="memoryForm">
+      
+      <!-- Type (Couple / Wedding / Birthday...) -->
+      <label for="type">Select Type:</label>
+      <select name="type" id="type" required>
+        <option value="">-- Select Type --</option>
+        <option value="couple">💞 Couple</option>
+        <option value="wedding">💍 Wedding</option>
+        <option value="birthday">🎂 Birthday</option>
+        <option value="anniversary">💐 Anniversary</option>
+      </select>
+
+      <!-- Message -->
+      <label for="message">Your Message:</label>
+      <textarea id="message" placeholder="Write something special..." required></textarea>
+
+      <!-- Upload Photo -->
+      <label for="photoInput">Upload Photo:</label>
+      <input type="file" id="photoInput" accept="image/*" required>
+
+      <!-- Song name -->
+      <label for="musicName">Choose Song:</label>
+      <input type="text" id="musicName" placeholder="Enter song name (optional)">
+
+      <!-- Submit -->
+      <button type="submit">Create Memory ✨</button>
+    </form>
+
+    <!-- Result box -->
+    <div id="shareBox" style="margin-top: 20px;"></div>
+
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

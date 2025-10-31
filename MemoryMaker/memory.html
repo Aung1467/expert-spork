@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Memory</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container" id="memoryBox">
+    <h2>Your Special Moment ❤️</h2>
+    <p id="memoryTypeLabel" class="typeLabel"></p>
+    <img id="photo" class="memory-photo" />
+    <p id="message"></p>
+    <audio id="musicPlayer" controls></audio>
+  </div>
+
+  <div class="container" id="expiredBox" style="display:none;">
+    <h2>This Memory Has Expired 💔</h2>
+    <button id="watchAdBtn">Watch Ad to Unlock</button>
+  </div>
+
+  <script src="view.js"></script>
+</body>
+</html>
