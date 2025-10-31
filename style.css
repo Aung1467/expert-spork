@@ -57,3 +57,18 @@ button:hover {
   color: #ff97c2;
   font-size: 18px;
 }
+#songList {
+  list-style: none;
+  padding: 0;
+  margin-top: 5px;
+}
+#songList li {
+  background: #f3f3f3;
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+#songList li:hover {
+  background: #d8f0ff;
+}

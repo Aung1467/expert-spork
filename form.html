@@ -32,10 +32,10 @@
       <label for="photoInput">Upload Photo:</label>
       <input type="file" id="photoInput" accept="image/*" required>
 
-      <!-- Song name -->
-      <label for="musicName">Choose Song:</label>
-      <input type="text" id="musicName" placeholder="Enter song name (optional)">
-
+<h3>🎵 Choose a Song</h3>
+<input type="text" id="musicSearch" placeholder="Search for a song..." autocomplete="off">
+<ul id="songList"></ul>
+<audio id="musicPreview" controls style="display:none;"></audio>
       <!-- Submit -->
       <button type="submit">Create Memory ✨</button>
     </form>

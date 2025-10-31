@@ -1,25 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Memory</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Memory 💖</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" id="memoryBox">
-    <h2>Your Special Moment ❤️</h2>
-    <p id="memoryTypeLabel" class="typeLabel"></p>
-    <img id="photo" class="memory-photo" />
-    <p id="message"></p>
-    <audio id="musicPlayer" controls></audio>
+
+  <div class="container fade-in">
+    <h1>Your Special Moment ❤️</h1>
+    <div id="memoryBox">
+      <img id="photoDisplay" style="max-width:100%; border-radius:10px;">
+      <p id="messageDisplay"></p>
+      <p id="typeDisplay"></p>
+      <audio id="musicPlayer" controls></audio>
+      <p id="expireInfo" style="color:gray; font-size:0.9em;"></p>
+    </div>
   </div>
 
-  <div class="container" id="expiredBox" style="display:none;">
-    <h2>This Memory Has Expired 💔</h2>
-    <button id="watchAdBtn">Watch Ad to Unlock</button>
-  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+    import { getDatabase, ref as dbRef, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
-  <script src="view.js"></script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD2_Nus7hLG3MEbtoAnM1nzAdlF4kEwovI",
+      authDomain: "memorymaker-e7e84.firebaseapp.com",
+      projectId: "memorymaker-e7e84",
+      storageBucket: "memorymaker-e7e84.firebasestorage.app",
+      messagingSenderId: "170056478997",
+      appId: "1:170056478997:web:25c04150c33a1f10aa791c",
+      measurementId: "G-1BPNWLW24W"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+    const db = getDatabase(app);
+
+    // URL parameter ထဲက memoryId ယူမယ်
+    const urlParams = new URLSearchParams(window.location.search);
+    const memoryId = urlParams.get("id");
+
+    if (!memoryId) {
+      document.body.innerHTML = "<h2>❌ Invalid Link</h2>";
+    } else {
+      const memoryRef = dbRef(db, "memories/" + memoryId);
+      get(memoryRef).then(async (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const now = Date.now();
+          const createdAt = data.createdAt || now;
+          const expireTime = createdAt + (24 * 60 * 60 * 1000); // 24 hours
+          
+          if (now > expireTime) {
+            document.body.innerHTML = "<h2>⏰ This memory has expired.</h2><p>Watch an ad to renew.</p>";
+            return;
+          }
+
+          document.getElementById("photoDisplay").src = data.imageData;
+          document.getElementById("messageDisplay").textContent = data.message;
+          document.getElementById("typeDisplay").textContent = "💫 " + data.type;
+          document.getElementById("musicPlayer").src = data.musicURL || "";
+          
+          const remaining = Math.round((expireTime - now) / (60 * 60 * 1000));
+          document.getElementById("expireInfo").textContent = `⏳ Expires in ${remaining} hours`;
+        } else {
+          document.body.innerHTML = "<h2>❌ Memory not found.</h2>";
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
