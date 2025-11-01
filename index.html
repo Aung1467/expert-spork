@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Memory Maker</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container fade-in">
-    <h1>✨ Create Your Special Moment ✨</h1>
-    <p>Choose an occasion to get started:</p>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Maker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container fade-in">
+      <h1>✨ Create Your Special Moment ✨</h1>
+      <p>Choose an occasion to get started:</p>
 
-    <form action="form.html" method="get">
-      <button type="submit">Next ➜</button>
-    </form>
-  </div>
-</body>
+      <form action="form.html" method="get">
+        <select name="type" required>
+          <option value="">-- Select Type --</option>
+          <option value="couple">💞 Couple</option>
+          <option value="wedding">💍 Wedding</option>
+          <option value="birthday">🎂 Birthday</option>
+          <option value="anniversary">💐 Anniversary</option>
+        </select>
+        <button type="submit">Next ➜</button>
+      </form>
+    </div>
+
+    <!-- Load JS -->
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

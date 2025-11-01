@@ -20,7 +20,45 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 console.log("✅ Firebase connected");
+// Firebase import (module version)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyD2_Nus7hLG3MEbtoAnM1nzAdlF4kEwovI",
+  authDomain: "memorymaker-e7e84.firebaseapp.com",
+  projectId: "memorymaker-e7e84",
+  storageBucket: "memorymaker-e7e84.firebasestorage.app",
+  messagingSenderId: "170056478997",
+  appId: "1:170056478997:web:25c04150c33a1f10aa791c",
+  measurementId: "G-1BPNWLW24W"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+getAnalytics(app);
+
+// ✅ Deezer search (with proxy to bypass CORS)
+const searchInput = document.getElementById('musicName');
+const proxy = "https://corsproxy.io/?";
+
+async function searchSong(query) {
+  if (!query) return;
+  const url = `${proxy}https://api.deezer.com/search?q=${encodeURIComponent(query)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  // show top 5 results
+  console.log(data.data.slice(0, 5));
+}
+
+searchInput?.addEventListener('input', (e) => {
+  const query = e.target.value.trim();
+  if (query.length >= 2) {
+    searchSong(query);
+  }
+});
 // ==========================
 // 🎵 Search Song Function (Audius API)
 // ==========================
